@@ -1,0 +1,22 @@
+@use 'base/normalize';
+@use 'base/variables';
+@use 'base/mixins';
+@use 'base/globales';
+@use 'base/utilidades';
+@use 'base/botones';
+@use 'base/darkmode';
+
+/** UI **/
+@use 'layout/header';
+@use 'layout/footer';
+@use 'layout/navegacion';
+@use 'layout/iconos';
+@use 'layout/anuncios';
+@use 'layout/contactar';
+@use 'layout/inferior';
+@use 'layout/testimoniales';
+@use 'layout/formularios';
+
+/** Páginas Internas **/
+@use 'internas/nosotros';
+@use 'internas/admin';

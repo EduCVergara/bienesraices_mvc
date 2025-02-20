@@ -1,0 +1,109 @@
+@use '../base/mixins' as *;
+@use '../base/variables' as *;
+@use 'sass:color';
+
+.derecha {
+    
+    @include tablet {
+        
+    }
+}
+
+
+.dark-mode-button {
+    width: 4rem;
+    margin-left: 2.5rem;
+    filter: invert(1);
+    border-radius: 4rem;
+    padding: .3rem;
+    transition: all .3s;
+    &:hover {
+        cursor: pointer;
+        filter: invert(0);
+        background-color: color.mix($blanco, transparent, 75%);
+    }
+}
+
+.barra {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3rem;
+    @include tablet {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    a {
+        img {
+            margin-bottom: 2rem;
+            width: auto;
+            height: 50px;
+            @include tablet {
+                margin-bottom: 0;
+                padding-bottom: .1rem;
+            }
+        }
+    }
+}
+
+.navegacion {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    transition: transform .3s ease-in-out, visibility .3s ease-in-out, opacity .3s linear, height .3s linear;
+
+    @include tablet {
+        display: flex;
+        align-items: center;
+        opacity: 1;
+        visibility: visible;
+    }
+    a{
+        color: $blanco;
+        text-decoration: none;
+        font-size: 2.2rem;
+        display: block;
+        text-align: center;
+        transition: all .3s;
+        &:hover {
+            color:$verde;
+        }
+        @include tablet {
+            margin-right: 2rem;
+            font-size: 1.8rem;
+
+            &:last-of-type {
+                margin-right: 0;
+            }
+        }
+    }
+    .cerrar-sesion:hover {
+        background-color: rgba($rojo, $alpha: .4);
+        padding: .1rem .5rem;
+        border-radius: 1.5rem;
+        color: $blanco;
+    }
+}
+
+// *Menú de hamburguesa*//
+
+.mobile-menu {
+    @include tablet {
+        display: none;
+    }
+
+    img {
+        width: 5rem;
+        cursor: pointer;
+    }
+}
+
+.mostrar {
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+}
+
+.fade-out {
+    opacity: 0;
+}

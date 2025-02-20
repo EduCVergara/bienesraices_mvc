@@ -1,0 +1,72 @@
+@use '../base/variables' as *;
+@use 'sass:color';
+
+.dark-mode {
+    background-color: color.adjust($grisOscuro, $lightness: -10%);
+    transition: all .3s;
+    
+    p, a, h1, h3, h4 {
+        color: $blanco;
+    }
+
+    a, h1, h2, h3, h4 {
+        color: $gris;
+    }
+
+    .anuncio, .resumen-propiedad, .resumen-entrada {
+        background-color: $grisOscuro;
+        border: 1px solid $grisOscuro;
+
+        .precio {
+            color: $verde;
+        }
+        .icono {
+            filter: invert(1);
+        }
+    }
+
+    .resumen-entrada, .resumen-propiedad {
+        padding: 2rem;
+        border-radius: 1rem;
+    }
+
+    .formulario {
+        legend, label, p {
+            color: $gris;
+        }
+
+        input:not([type="submit"]),
+        textarea, select {
+            background-color: $grisOscuro;
+            border: 1px solid $grisOscuro;
+            color: $blanco;
+        }
+    }
+
+    table.propiedades {
+        tbody {
+            tr {
+                td {
+                    color: $blanco;
+                    border-color: $grisOscuro;
+                }
+            }
+        }
+    }
+
+    .modal {
+        .modal-contenido {
+            h2 {
+                font-weight: bold;
+            }
+            h2, p {
+                color: $grisOscuro;
+            }
+        }
+    }
+    .contenido-centrado {
+        h1 {
+            font-weight: 600;
+        }
+    }
+}

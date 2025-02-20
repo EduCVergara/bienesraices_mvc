@@ -1,0 +1,19 @@
+{
+    "name": "usuario/bienes-raices",
+    "description": "Actualizando a POO",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Edu Constancio Vergara",
+            "email": "e.constanciovergara@gmail.com"
+        }
+    ],
+    "require": {
+        "intervention/image": "^3.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "./classes"
+        }
+    }
+}

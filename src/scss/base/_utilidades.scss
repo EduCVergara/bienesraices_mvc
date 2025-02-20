@@ -1,0 +1,17 @@
+@use 'sass:math';
+@use '../base/variables' as *;
+.seccion {
+    margin-top: math.div($separacion, 2);
+    margin-bottom: math.div($separacion, 2);
+}
+.contenido-centrado {
+    max-width: 80rem;
+}
+
+.alinear-derecha {
+    display: flex;
+    justify-content: flex-end;
+}
+.w-100 {
+    width: 100%;
+}

@@ -1,0 +1,48 @@
+@use '../base/mixins' as *;
+@use '../base/variables' as *;
+@use 'sass:color';
+
+@include tablet {
+    .contenedor-anuncios {
+        @include grid(3, 2rem);
+    }
+}
+
+.anuncio {
+    background-color: color.adjust($gris, $lightness: 5%);
+    border: 1px solid color.adjust($gris, $lightness: -5%);
+    margin-bottom: 2rem;
+
+    .contenido-anuncio {
+        padding: 2rem;
+    }
+    h3, p {
+        margin: 0;
+    }
+     
+}
+
+.precio {
+    color: $verde;
+    font-weight: $bold;
+    font-size: 3rem;
+}
+
+.iconos-caracteristicas {
+    display: flex;
+    padding: 0;
+    list-style: none;
+    max-width: 40rem;
+    
+    li {
+        flex: 1; // indica que cada li recibe 1px del espacio disponible, tomando todo el espacio disponible, para que cada uno mida lo mismo.
+        display: flex;
+        img {
+            flex: 0 0 3rem;
+            margin-right: 1rem;
+        }
+        p {
+            font-weight: $black;
+        }
+    }
+}
