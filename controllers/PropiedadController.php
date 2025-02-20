@@ -1,9 +1,35 @@
 <?php
 
 namespace Controllers;
+use MVC\Router;
+use Model\Propiedad;
+use Model\Vendedores;
 
 class PropiedadController {
-    public function index() {
-        echo "index";
+    public static function index(Router $router) {
+
+        $propiedades = Propiedad::all(); // método estático se llama con ::
+        $resultado = null;
+
+        $router->render('propiedades/admin', [
+            'propiedades' => $propiedades,
+            'resultado' => $resultado
+        ]);
     }
+
+    public static function crear(Router $router) {
+
+        $propiedad = new Propiedad;
+        $vendedores = Vendedores::all();
+
+        $router->render('propiedades/crear', [
+           'propiedad' => $propiedad,
+           'vendedores' => $vendedores
+        ]);
+    }
+
+    public static function actualizar() {
+        echo "actualizar propiedad";
+    }
+
 }
