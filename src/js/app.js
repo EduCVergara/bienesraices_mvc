@@ -1,6 +1,33 @@
 document.addEventListener('DOMContentLoaded', function() { // 'DOMContentLoaded' Escucha que todo el documento esté cargado
     eventListeners();
     darkMode();
+
+    // Formatear Precio Casa
+    document.getElementById("precio").addEventListener("input", function () {
+        let valor = this.value.replace(/\D/g, ""); // Solo números
+        if (valor.length > 10) { 
+            valor = valor.slice(0, 10); // Limita a 10 dígitos
+        }
+
+        if (valor === "") {
+            this.value = "$ "; // Mantiene el símbolo $ aunque el usuario borre todo
+            document.getElementById("valorLimpio").value = "";
+            return;
+        }
+
+        let numero = parseInt(valor, 10);
+        if (isNaN(numero)) { 
+            this.value = "$ "; 
+            document.getElementById("valorLimpio").value = ""; 
+            return; 
+        }
+
+        let valorFormateado = numero.toLocaleString("es-CL"); // Formatea con puntos
+        this.value = "$ " + valorFormateado;
+
+        // Guarda el valor limpio sin "$" ni "."
+        document.getElementById("valorLimpio").value = valor;
+    });
 }); 
 
 function darkMode() {

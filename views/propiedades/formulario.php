@@ -5,7 +5,8 @@
     <input type="text" id="titulo" name="propiedad[titulo]" placeholder="Título de la propiedad" value="<?php echo s($propiedad->titulo);?>">
 
     <label for="precio">Precio:</label>
-    <input type="number" id="precio" name="propiedad[precio]" placeholder="Precio de la propiedad" value="<?php echo s($propiedad->precio);?>">
+    <input type="text" id="precio" name="propiedad[precio]" placeholder="Precio de la propiedad" value="<?php echo s($propiedad->precio); ?>">
+    <input type="hidden" id="valorLimpio" name="propiedad[precio]" value="<?php echo s($propiedad->precio); ?>">
 
     <label for="imagen">Imagen:</label>
     <input type="file" id="imagen" accept="image/jpeg, image/png" name="propiedad[imagen]">
