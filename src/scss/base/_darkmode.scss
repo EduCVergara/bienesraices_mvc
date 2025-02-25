@@ -4,6 +4,10 @@
 .dark-mode {
     background-color: color.adjust($grisOscuro, $lightness: -10%);
     transition: all .3s;
+
+    b {
+        color: $blanco;
+    }
     
     p, a, h1, h3, h4 {
         color: $blanco;

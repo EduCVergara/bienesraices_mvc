@@ -195,7 +195,11 @@ class ActiveRecord {
     public function sync($args = []) {
         foreach($args as $key=> $value) {
             if (property_exists($this, $key) && !is_null($value)) {
-                $this->$key = $value;
+                // Si es el precio, limpiamos el formato
+                if ($key === 'precio') {
+                    $value = str_replace(['$', '.', ' '], '', $value);
+                }
+                $this->$key = $value;    
             }
         }
     }

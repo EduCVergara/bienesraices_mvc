@@ -53,7 +53,7 @@
         <div class="modal-contenido">
             <h2>Confirmar Eliminación</h2>
             <p>¿Estás seguro de que deseas eliminar este elemento?</p>
-            <form id="formEliminar" method="POST" class="w-100">
+            <form id="formEliminar" method="POST" class="w-100" action="/propiedades/eliminar">
                 <input type="hidden" name="id" id="idEliminar">
                 <input type="hidden" name="tipo" id="tipoModal">
                 <button type="submit" class="boton-rojo-block">Sí, eliminar</button>

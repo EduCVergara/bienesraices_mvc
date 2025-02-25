@@ -29,6 +29,23 @@ document.addEventListener('DOMContentLoaded', function() { // 'DOMContentLoaded'
 
     // Aplica formato al cargar la página
     formatearPrecio();
+
+    const inputsNumericos = document.querySelectorAll("#habitaciones, #wc, #estacionamiento");
+
+    inputsNumericos.forEach(input => {
+        input.addEventListener("input", function () {
+            let valor = parseInt(this.value, 10);
+
+            // Si el valor es menor que 1 o no es un número, lo cambia a 1
+            if (isNaN(valor)) {
+                this.value = 0;
+            } 
+            // Si el valor es mayor que 9, lo cambia a 9
+            else if (valor > 9) {
+                this.value = 9;
+            }
+        });
+    });
 }); 
 
 function darkMode() {

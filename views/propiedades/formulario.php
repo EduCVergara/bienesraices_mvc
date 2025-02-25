@@ -3,10 +3,10 @@
 
     <label for="titulo">Título:</label>
     <input type="text" id="titulo" name="propiedad[titulo]" placeholder="Título de la propiedad" value="<?php echo s($propiedad->titulo);?>">
-
+    <?php $precioFormateado = number_format($propiedad->precio, 0, '', '.'); ?>
     <label for="precio">Precio:</label>
-    <input type="text" id="prePrecio" name="precio" placeholder="Precio de la propiedad" value="<?php echo s($propiedad->precio); ?>">
-    <input type="hidden" id="precio" name="propiedad[precio]">
+    <input type="text" id="prePrecio" name="propiedad[precio]" placeholder="Precio de la propiedad" value="<?php echo s($precioFormateado); ?>">
+    <input type="hidden" id="precio" name="precio">
 
     <label for="imagen">Imagen:</label>
     <input type="file" id="imagen" accept="image/jpeg, image/png" name="propiedad[imagen]">
