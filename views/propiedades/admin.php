@@ -34,7 +34,7 @@
                     <td><img src="/imagenes/<?php echo $propiedad->imagen; ?>" class="imagen-tabla"></td>
                     <td>$<?php echo number_format($propiedad->precio); ?></td>
                     <td>
-                        <a href="admin/propiedades/actualizar.php?id=<?php echo $propiedad->id; ?>" class="boton-amarillo-block">Actualizar</a>
+                        <a href="/propiedades/actualizar?id=<?php echo $propiedad->id; ?>" class="boton-amarillo-block">Actualizar</a>
                         
                         <form method="POST" class="w-100 form-eliminacion" onsubmit="return abrirModal(event, <?php echo $propiedad->id; ?>, 'propiedad')">
                             <input type="hidden" name="id" value="<?php echo $propiedad->id ?>">

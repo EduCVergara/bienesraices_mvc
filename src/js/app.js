@@ -2,32 +2,33 @@ document.addEventListener('DOMContentLoaded', function() { // 'DOMContentLoaded'
     eventListeners();
     darkMode();
 
-    // Formatear Precio Casa
-    document.getElementById("precio").addEventListener("input", function () {
-        let valor = this.value.replace(/\D/g, ""); // Solo números
-        if (valor.length > 10) { 
-            valor = valor.slice(0, 10); // Limita a 10 dígitos
+    const inputPrecio = document.getElementById("prePrecio");
+    const inputHidden = document.getElementById("precio");
+
+    function formatearPrecio() {
+        let valor = inputPrecio.value.replace(/\D/g, ""); // Quita caracteres no numéricos
+        if (valor) {
+            inputPrecio.value = "$ " + parseInt(valor, 10).toLocaleString("es-CL");
+            inputHidden.value = valor;
         }
+    }
+
+    inputPrecio.addEventListener("input", function () {
+        let valor = this.value.replace(/\D/g, "");
+        if (valor.length > 10) valor = valor.slice(0, 10);
 
         if (valor === "") {
-            this.value = "$ "; // Mantiene el símbolo $ aunque el usuario borre todo
-            document.getElementById("valorLimpio").value = "";
+            this.value = "$ ";
+            inputHidden.value = "";
             return;
         }
 
-        let numero = parseInt(valor, 10);
-        if (isNaN(numero)) { 
-            this.value = "$ "; 
-            document.getElementById("valorLimpio").value = ""; 
-            return; 
-        }
-
-        let valorFormateado = numero.toLocaleString("es-CL"); // Formatea con puntos
-        this.value = "$ " + valorFormateado;
-
-        // Guarda el valor limpio sin "$" ni "."
-        document.getElementById("valorLimpio").value = valor;
+        this.value = "$ " + parseInt(valor, 10).toLocaleString("es-CL");
+        inputHidden.value = valor;
     });
+
+    // Aplica formato al cargar la página
+    formatearPrecio();
 }); 
 
 function darkMode() {

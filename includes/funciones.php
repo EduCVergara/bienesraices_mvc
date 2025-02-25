@@ -16,6 +16,18 @@ function Autenticado() {
     }
 }
 
+function ValidarORedireccionar(string $url) {
+    // Validacion de Id válido
+    $id = $_GET['id'];
+    $id = filter_var($id, FILTER_VALIDATE_INT);
+
+    if (!$id) {
+        header("Location: $url");
+    }
+
+    return $id;
+}
+
 function debuguear($variable) {
     echo "<pre>";
     var_dump($variable);

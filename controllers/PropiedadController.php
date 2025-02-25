@@ -11,7 +11,8 @@ class PropiedadController {
     public static function index(Router $router) {
 
         $propiedades = Propiedad::all(); // método estático se llama con ::
-        $resultado = null;
+        
+        $resultado = $_GET['resultado'] ?? null;
 
         $router->render('propiedades/admin', [
             'propiedades' => $propiedades,
@@ -65,7 +66,8 @@ class PropiedadController {
     }
 
     public static function actualizar() {
-        echo "actualizar propiedad";
+        
+        $id = ValidarORedireccionar('/admin');
     }
 
 }

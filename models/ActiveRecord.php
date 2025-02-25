@@ -36,7 +36,6 @@ class ActiveRecord {
         $query .= join("', '", array_values($atributos));
         $query .= "')";
         $resultado = self::$db->query($query);
-        
         if ($resultado) {
             // Redireccionar al Usuario
             header('Location: /admin?resultado=1&titulo=' . urlencode($this->titulo));
