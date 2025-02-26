@@ -66,10 +66,14 @@ class ActiveRecord {
 
     // Eliminar un registro
     public function eliminar() {
-        // Eliminar la propiedad
+        // Eliminar elemento
         $query = "DELETE FROM " . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
-        $resultado = self::$db->query($query);
-
+        try {
+            $resultado = self::$db->query($query);
+        } catch (\Throwable $th) {
+            header('Location: /admin?resultado=4&nombre=' . urlencode($this->nombre));
+        }
+        
         if ($resultado) {
             $this->borrarImagen();
             header('Location: /admin?resultado=3&titulo=' . urlencode($this->titulo));

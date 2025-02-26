@@ -4,14 +4,18 @@
         <?php 
             if ($resultado) {
                 $mensaje = mostrarNotificacion(intval($resultado));
-                if ($mensaje) { ?>
-                    <p class="alerta exito"><?php echo s($mensaje) ?></p>
-             <?php   }
+                if ($resultado <> 4) {
+                    if ($mensaje) { ?>
+                        <p class="alerta exito"><?php echo s($mensaje) ?></p>
+                 <?php   }
+                } else {
+                    ?> <p class="alerta error"><?php echo s($mensaje) ?></p>
+              <?php  }
             } 
         ?>
 
         <a href="/propiedades/crear" class="boton boton-verde">Nueva Propiedad</a>
-        <a href="/vendedores/crear" class="boton boton-verde">Nuevo Vendedor(a)</a>
+        <a href="/vendedores/crear" class="boton boton-amarillo">Nuevo Vendedor(a)</a>
         <h2>Propiedades</h2>
 
         <table class="propiedades">
@@ -39,6 +43,39 @@
                         <form method="POST" class="w-100 form-eliminacion" onsubmit="return abrirModal(event, <?php echo $propiedad->id; ?>, 'propiedad')">
                             <input type="hidden" name="id" value="<?php echo $propiedad->id ?>">
                             <input type="hidden" name="tipo" value="propiedad">
+                            <input type="submit" class="boton-rojo-block" value="Eliminar">
+                        </form>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+        <h2>Vendedores</h2>
+
+        <table class="propiedades">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody> <!-- Mostrar los resultados -->
+                <?php foreach($vendedores as $vendedor): ?>
+                
+                <tr>
+                    <td><?php echo $vendedor->id; ?></td>
+                    <td><?php echo $vendedor->nombre . ' ' . $vendedor->apellido; ?></td>
+                    <td><?php echo $vendedor->telefono; ?></td>
+                    <td>
+                        <a href="/vendedores/actualizar?id=<?php echo $vendedor->id; ?>" class="boton-amarillo-block">Actualizar</a>
+                        
+                        <form method="POST" class="w-100 form-eliminacion" onsubmit="return abrirModal(event, <?php echo $vendedor->id; ?>, 'vendedor')">
+                            <input type="hidden" name="id" value="<?php echo $vendedor->id ?>">
+                            <input type="hidden" name="tipo" value="vendedor">
                             <input type="submit" class="boton-rojo-block" value="Eliminar">
                         </form>
                     </td>

@@ -1,5 +1,5 @@
 <main class="contenedor seccion">
-    <h1>Actualizar</h1>
+    <h1>Actualizar Propiedad</h1>
 
     <a href="/admin" class="boton boton-verde">Volver</a>
 
@@ -14,5 +14,4 @@
 
         <input type="submit" value="Actualizar Datos" class="boton boton-verde">
     </form>
-    
 </main>

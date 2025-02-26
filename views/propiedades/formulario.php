@@ -3,7 +3,9 @@
 
     <label for="titulo">Título:</label>
     <input type="text" id="titulo" name="propiedad[titulo]" placeholder="Título de la propiedad" value="<?php echo s($propiedad->titulo);?>">
-    <?php $precioFormateado = number_format($propiedad->precio, 0, '', '.'); ?>
+
+    <?php $precioFormateado = is_numeric($propiedad->precio) && $propiedad->precio !== '' ? number_format($propiedad->precio, 0, '', '.') : ''; ?>
+
     <label for="precio">Precio:</label>
     <input type="text" id="prePrecio" name="propiedad[precio]" placeholder="Precio de la propiedad" value="<?php echo s($precioFormateado); ?>">
     <input type="hidden" id="precio" name="precio">

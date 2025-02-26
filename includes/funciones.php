@@ -61,6 +61,9 @@ function mostrarNotificacion($codigo) {
         case 3:
             $mensaje = 'Eliminado Correctamente';
             break;
+        case 4:
+            $mensaje = 'No se puede eliminar un Vendedor con una Propiedad asociada';
+            break;
         
         default:
             $mensaje = false;

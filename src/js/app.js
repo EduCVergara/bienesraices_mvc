@@ -34,15 +34,24 @@ document.addEventListener('DOMContentLoaded', function() { // 'DOMContentLoaded'
 
     inputsNumericos.forEach(input => {
         input.addEventListener("input", function () {
-            let valor = parseInt(this.value, 10);
+            let valor = this.value.trim(); // Eliminamos espacios en blanco
 
-            // Si el valor es menor que 1 o no es un número, lo cambia a 1
-            if (isNaN(valor)) {
-                this.value = 0;
-            } 
-            // Si el valor es mayor que 9, lo cambia a 9
-            else if (valor > 9) {
-                this.value = 9;
+            // Si el campo está vacío, lo dejamos así
+            if (valor === "") {
+                this.value = "";
+                return;
+            }
+
+            // Convertimos a número
+            let numero = parseInt(valor, 10);
+
+            // Si el valor es menor que 1 y no está vacío, lo cambia a 1
+            if (!isNaN(numero)) {
+                if (numero < 1) {
+                    this.value = 1;
+                } else if (numero > 9) {
+                    this.value = 9;
+                }
             }
         });
     });
@@ -112,7 +121,7 @@ function borraMensaje() {
             setTimeout(() => {
                 mensaje.remove(); // Elimina después del fade
             }, 500); // Debe coincidir con la duración del fade en CSS
-        }, 3000 + (index * 1000)); // Intervalo escalonado entre eliminaciones
+        }, 4000 + (index * 2000)); // Intervalo escalonado entre eliminaciones
     });
 }
 
@@ -124,6 +133,7 @@ function abrirModal(event, id, tipo) {
         alert("ID no válido. No se puede eliminar el elemento.");
         return false;
     }
+
     // Guardamos el tipo en el input del modal
     document.getElementById("tipoModal").value = tipo;
     // Guardamos el ID en el input del modal

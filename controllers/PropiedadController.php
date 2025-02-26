@@ -11,11 +11,13 @@ class PropiedadController {
     public static function index(Router $router) {
 
         $propiedades = Propiedad::all(); // método estático se llama con ::
+        $vendedores = Vendedores::all();
         
         $resultado = $_GET['resultado'] ?? null;
 
         $router->render('propiedades/admin', [
             'propiedades' => $propiedades,
+            'vendedores' => $vendedores,
             'resultado' => $resultado
         ]);
     }
@@ -112,7 +114,7 @@ class PropiedadController {
         ]);
     }
 
-    public static function eliminar() {
+    public static function eliminar(Router $router) {
         // Eliminación de propiedades
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -124,10 +126,19 @@ class PropiedadController {
                 $tipo = $_POST['tipo'];
     
                 if (validarTipoContenido($tipo)) {
-                    $propiedad = Propiedad::find($id);
-                    $propiedad->eliminar();
+                    // Compara lo que vamos a eliminar
+                    if ($tipo === 'vendedor' ) {
+                        $vendedor = Vendedores::find($id);
+                        $vendedor->eliminar();
+                    } else if ($tipo === 'propiedad') {
+                        $propiedad = Propiedad::find($id);
+                        $propiedad->eliminar();
+                    }
                 }
             }
         }
+        $router->render('/propiedades/eliminar', [
+            
+        ]);
     }
 }
