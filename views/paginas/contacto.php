@@ -1,4 +1,15 @@
 <main class="contenedor seccion">
+
+        <?php 
+        
+            if ($mensajeExito) {
+                echo '<p class="alerta exito">' . $mensajeExito . '</p>';
+            } elseif($mensajeError) {
+                echo '<p class="alerta error">' . $mensajeError . '</p>';
+            }
+
+        ?>
+
         <h1>Contacto</h1>
 
         <picture>
@@ -9,56 +20,49 @@
 
         <h2>Llene el formulario de contacto</h2>
 
-        <form class="formulario" action="">
+        <form class="formulario" action="contacto" method="POST">
             <fieldset>
                 <legend>Información Personal</legend>
+
                 <label for="nombre">Nombre</label>
-                <input type="text" placeholder="Tu Nombre" id="nombre">
+                <input type="text" placeholder="Tu Nombre" id="nombre" name="contacto[nombre]" required>
 
-                <label for="email">E-Mail</label>
-                <input type="email" placeholder="Tu E-Mail" id="email">
+                <!-- EMail en JavaScript -->
 
-                <label for="telefono">Teléfono</label>
-                <input type="tel" placeholder="Tu Teléfono" id="telefono">
+                <!-- Telefono En JavaScript -->
 
                 <label for="mensaje">Mensaje</label>
-                <textarea id="mensaje"></textarea>
+                <textarea id="mensaje" name="contacto[mensaje]" required></textarea>
             </fieldset>
 
             <fieldset>
                 <legend>Información sobre la propiedad</legend>
 
                 <label for="opciones">Compra o arrienda:</label>
-                <select id="opciones">
+                <select id="opciones" name="contacto[tipo]" required>
                     <option value="" disabled selected>-- Seleccione --</option>
-                    <option value="Compra">Compra</option>
-                    <option value="Arrienda">Arrienda</option>
+                    <option value="Comprar">Compra</option>
+                    <option value="Arrendar">Arrienda</option>
                 </select>
 
                 <label for="presupuesto">Presupuesto</label>
-                <input type="number" id="presupuesto" placeholder="Tu presupuesto">
+                <input type="number" id="presupuesto" placeholder="Tu presupuesto" name="contacto[presupuesto]" required>
             </fieldset>
 
             <fieldset>
                 <legend>Contacto</legend>
 
-                <p>Como desea ser contactado:</p>
+                <h4>Seleccione su preferencia:</h4>
 
                 <div class="forma-contacto">
                     <label for="contactar-telefono">Teléfono</label>
-                    <input name="contacto" type="radio" value="telefono" id="contactar-telefono">
+                    <input type="radio" value="telefono" id="contactar-telefono" name="contacto[forma]" required>
 
                     <label for="contactar-email">E-mail</label>
-                    <input name="contacto" type="radio" value="email" id="contactar-email">
+                    <input type="radio" value="email" id="contactar-email" name="contacto[forma]" required>
                 </div>
 
-                <p>Si eligió teléfono, elija la fecha y la hora para ser contactado: </p>
-
-                <label for="fecha">Fecha:</label>
-                <input type="date" id="fecha">
-
-                <label for="hora">Hora:</label>
-                <input type="time" id="hora" min="09:00" max="18:00">
+                <div id="contacto"></div>
 
             </fieldset>
 

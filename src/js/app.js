@@ -85,6 +85,9 @@ function eventListeners() {
 
     mobileMenu.addEventListener('click', navegacionResponsive) //Escuchamos por un click
 
+    // Muestra campos condicionales
+    const metodoContacto = document.querySelectorAll('input[name="contacto[forma]"]');
+    metodoContacto.forEach(input => input.addEventListener('click', mostrarMetodosContacto));
 }
 
 function navegacionResponsive() {
@@ -144,4 +147,26 @@ function abrirModal(event, id, tipo) {
 
 function cerrarModal() {
     document.getElementById("modalConfirmacion").style.display = "none";
+}
+
+function mostrarMetodosContacto(e) {
+    const contactoDiv = document.querySelector('#contacto');
+    
+    if (e.target.value === 'telefono') {
+        contactoDiv.innerHTML = `
+            <input type="tel" placeholder="Tu Teléfono" id="telefono" name="contacto[telefono]">
+
+            <p>Elija la fecha y la hora para ser contactado: </p>
+
+            <label for="fecha">Fecha:</label>
+            <input type="date" id="fecha" name="contacto[fecha]">
+
+            <label for="hora">Hora:</label>
+            <input type="time" id="hora" min="09:00" max="18:00" name="contacto[hora]">
+        `;
+    } else {
+        contactoDiv.innerHTML = `
+            <input type="email" placeholder="Tu E-Mail" id="email" name="contacto[email]" required>
+        `;
+    }
 }

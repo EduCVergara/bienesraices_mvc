@@ -12,7 +12,7 @@
             </div>
 
             <div class="texto-entrada">
-                <a href="entrada.php">
+                <a href="entrada">
                     <h4>Terraza en el techo de tu casa</h4>
                     <p class="informacion-meta">Escrito el: <span>28/01/2025</span> por: <span>Admin</span></p>
 
@@ -31,7 +31,7 @@
             </div>
 
             <div class="texto-entrada">
-                <a href="entrada.php">
+                <a href="entrada">
                     <h4>Guía para la decoración de tu hogar</h4>
                     <p class="informacion-meta">Escrito el: <span>28/01/2025</span> por: <span>Admin</span></p>
 
@@ -50,7 +50,7 @@
             </div>
 
             <div class="texto-entrada">
-                <a href="entrada.php">
+                <a href="entrada">
                     <h4>Extravaganza en casa</h4>
                     <p class="informacion-meta">Escrito el: <span>28/01/2025</span> por: <span>Admin</span></p>
 
@@ -69,7 +69,7 @@
             </div>
 
             <div class="texto-entrada">
-                <a href="entrada.php">
+                <a href="entrada">
                     <h4>Aprende de colores</h4>
                     <p class="informacion-meta">Escrito el: <span>28/01/2025</span> por: <span>Admin</span></p>
 
