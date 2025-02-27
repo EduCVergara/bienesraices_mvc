@@ -41,9 +41,10 @@ class PropiedadController {
                 $imagen = $manager->read($_FILES['propiedad']['tmp_name']['imagen'])->cover(800, 600);
                 $propiedad->setImagen($nombreImagen);
             }
+            // Asignamos el precio correcto enviado por POST (sin formato para la BBDD)
+            $propiedad->precio = $_POST['precio'];
 
             $errores = $propiedad->validar();
-
             if (empty($errores)) {
 
                 // * SUBIDA DE ARCHIVOS *//

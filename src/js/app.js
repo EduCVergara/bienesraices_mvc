@@ -9,13 +9,13 @@ document.addEventListener('DOMContentLoaded', function() { // 'DOMContentLoaded'
         let valor = inputPrecio.value.replace(/\D/g, ""); // Quita caracteres no numéricos
         if (valor) {
             inputPrecio.value = "$ " + parseInt(valor, 10).toLocaleString("es-CL");
-            inputHidden.value = valor;
+            inputHidden.value = parseInt(valor, 10); // Solo números sin puntos ni comas
         }
     }
 
     inputPrecio.addEventListener("input", function () {
-        let valor = this.value.replace(/\D/g, "");
-        if (valor.length > 10) valor = valor.slice(0, 10);
+        let valor = this.value.replace(/\D/g, ""); // Solo números
+        if (valor.length > 10) valor = valor.slice(0, 10); // Máximo 10 dígitos
 
         if (valor === "") {
             this.value = "$ ";
@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', function() { // 'DOMContentLoaded'
             return;
         }
 
-        this.value = "$ " + parseInt(valor, 10).toLocaleString("es-CL");
-        inputHidden.value = valor;
+        this.value = "$ " + parseInt(valor, 10).toLocaleString("es-CL"); // Formato con puntos
+        inputHidden.value = valor; // Guarda sin puntos ni símbolos
     });
 
     // Aplica formato al cargar la página

@@ -31,12 +31,12 @@
 
                 <div class="derecha">
                     <nav class="navegacion">
-                        <a href="nosotros.php">Nosotros</a>
-                        <a href="anuncios.php">Anuncios</a>
-                        <a href="blog.php">Blog</a>
-                        <a href="contacto.php">Contacto</a>
+                        <a href="nosotros">Nosotros</a>
+                        <a href="anuncios">Anuncios</a>
+                        <a href="blog">Blog</a>
+                        <a href="contacto">Contacto</a>
                         <?php if ($auth): ?>
-                        <a href="cerrar-sesion.php" class="cerrar-sesion">Cerrar Sesión</a>
+                        <a href="cerrar-sesion" class="cerrar-sesion">Cerrar Sesión</a>
                         <?php endif; ?>
                         <img class="dark-mode-button" src="/build/img/dark-mode.svg" alt="modo-oscuro">
                     </nav>
@@ -54,10 +54,10 @@
     <footer class="footer seccion">
         <div class="contenedor">
             <nav class="navegacion">
-                <a href="nosotros.php">Nosotros</a>
-                <a href="anuncios.php">Anuncios</a>
-                <a href="blog.php">Blog</a>
-                <a href="contacto.php">Contacto</a>
+                <a href="nosotros">Nosotros</a>
+                <a href="anuncios">Anuncios</a>
+                <a href="blog">Blog</a>
+                <a href="contacto">Contacto</a>
             </nav>
         </div>
 

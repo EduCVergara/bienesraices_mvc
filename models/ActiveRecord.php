@@ -203,7 +203,7 @@ class ActiveRecord {
                 if ($key === 'precio') {
                     $value = str_replace(['$', '.', ' '], '', $value);
                 }
-                $this->$key = $value;    
+                $this->$key = $value;
             }
         }
     }
