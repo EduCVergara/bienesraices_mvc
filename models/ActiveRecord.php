@@ -36,9 +36,14 @@ class ActiveRecord {
         $query .= join("', '", array_values($atributos));
         $query .= "')";
         $resultado = self::$db->query($query);
+
         if ($resultado) {
+            // Determinar el parámetro y valor correctos
+            $parametro = $this instanceof Vendedores ? 'nombre' : 'titulo';
+            $valor = $this instanceof Vendedores ? $this->nombre : $this->titulo;
+
             // Redireccionar al Usuario
-            header('Location: /admin?resultado=1&titulo=' . urlencode($this->titulo));
+            header("Location: /admin?resultado=1&$parametro=" . urlencode($valor));
         }
     }
 
@@ -59,8 +64,12 @@ class ActiveRecord {
         $resultado = self::$db->query($query);
 
         if ($resultado) {
+            // Determinar el parámetro y valor correctos
+            $parametro = $this instanceof Vendedores ? 'nombre' : 'titulo';
+            $valor = $this instanceof Vendedores ? $this->nombre : $this->titulo;
+
             // Redireccionar al Usuario
-            header('Location: /admin?resultado=2&titulo=' . urlencode($this->titulo));
+            header("Location: /admin?resultado=2&$parametro=" . urlencode($valor));
         }
     }
 
@@ -68,6 +77,7 @@ class ActiveRecord {
     public function eliminar() {
         // Eliminar elemento
         $query = "DELETE FROM " . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
+
         try {
             $resultado = self::$db->query($query);
         } catch (\Throwable $th) {
@@ -76,7 +86,12 @@ class ActiveRecord {
         
         if ($resultado) {
             $this->borrarImagen();
-            header('Location: /admin?resultado=3&titulo=' . urlencode($this->titulo));
+            // Determinar el parámetro y valor correctos
+            $parametro = $this instanceof Vendedores ? 'nombre' : 'titulo';
+            $valor = $this instanceof Vendedores ? $this->nombre : $this->titulo;
+
+            // Redireccionar al Usuario
+            header("Location: /admin?resultado=3&$parametro=" . urlencode($valor));
         }
     }
 

@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() { // 'DOMContentLoaded'
     }
 
     inputPrecio.addEventListener("input", function () {
+        let cursorPos = this.selectionStart; // Guardamos la posición del cursor
         let valor = this.value.replace(/\D/g, ""); // Solo números
         if (valor.length > 10) valor = valor.slice(0, 10); // Máximo 10 dígitos
 
@@ -23,12 +24,18 @@ document.addEventListener('DOMContentLoaded', function() { // 'DOMContentLoaded'
             return;
         }
 
-        this.value = "$ " + parseInt(valor, 10).toLocaleString("es-CL"); // Formato con puntos
+        let nuevoValor = "$ " + parseInt(valor, 10).toLocaleString("es-CL"); // Formato con puntos
+        let diferencia = nuevoValor.length - this.value.length; // Calculamos cambio en la longitud del string
+
+        this.value = nuevoValor;
         inputHidden.value = valor; // Guarda sin puntos ni símbolos
+
+        this.setSelectionRange(cursorPos + diferencia, cursorPos + diferencia); // Restauramos la posición del cursor
     });
 
     // Aplica formato al cargar la página
     formatearPrecio();
+
 
     const inputsNumericos = document.querySelectorAll("#habitaciones, #wc, #estacionamiento");
 
