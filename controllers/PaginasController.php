@@ -62,16 +62,16 @@ class PaginasController {
 
             // Configurar SMTP
             $mail->isSMTP();
-            $mail->Host = 'sandbox.smtp.mailtrap.io';
+            $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Port = 2525;
-            $mail->Username = '310b00fae8db37';
-            $mail->Password = '31a65250a0d48c';
+            $mail->Port = 587;
+            $mail->Username = 'bienesraices.mvc@gmail.com';
+            $mail->Password = 'huxaxznlteprqrgy';
             $mail->SMTPSecure = 'tls';
 
             // Configurar el contenido del E-Mail
-            $mail->setFrom('admin@bienesraices.com');
-            $mail->addAddress('admin@bienesraices.com', 'BienesRaices.com');
+            $mail->setFrom('bienesraices.mvc@gmail.com');
+            $mail->addAddress('bienesraices.mvc@gmail.com', 'APP BienesRaices MVC');
             $mail->Subject = 'INFORMACIÓN // Tienes un nuevo mensaje';
 
             // Habilitar HTML
