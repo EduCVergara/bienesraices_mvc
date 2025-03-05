@@ -46,6 +46,37 @@
     }
 }
 
+.admin {
+    background-color: rgba($verde, .4);
+
+    &:hover {
+        background-color: rgba($verde, .7);
+    }
+}
+
+.admin, .cerrar-sesion {
+    padding: .1rem 1rem;
+    border-radius: 1.5rem;
+    transition: .3s ease;
+    font-family: "Roboto Flex", sans-serif;
+    font-variation-settings: 'wght' 300;
+    letter-spacing: 0px;
+    cursor: pointer;
+    &:hover {
+        color: $blanco !important;
+        font-variation-settings: 'wght' 500;
+        letter-spacing: .5px;
+    }
+}
+
+.cerrar-sesion {
+    background-color: rgba($rojo, .4);
+
+    &:hover {
+        background-color: rgba($rojo, .6);
+    }
+}
+
 .navegacion {
     visibility: hidden;
     opacity: 0;
@@ -58,7 +89,7 @@
         opacity: 1;
         visibility: visible;
     }
-    a{
+    a {
         color: $blanco;
         text-decoration: none;
         font-size: 2.2rem;
@@ -68,6 +99,7 @@
         &:hover {
             color:$verde;
         }
+        
         @include tablet {
             margin-right: 2rem;
             font-size: 1.8rem;
@@ -77,13 +109,10 @@
             }
         }
     }
-    .cerrar-sesion:hover {
-        background-color: rgba($rojo, $alpha: .4);
-        padding: .1rem .5rem;
-        border-radius: 1.5rem;
-        color: $blanco;
-    }
+
 }
+
+
 
 // *Menú de hamburguesa*//
 

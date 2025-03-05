@@ -1,8 +1,8 @@
 <?php
 
 function conectarDB() : mysqli {
-    $db = new mysqli('yamanote.proxy.rlwy.net', 'root', 'VVXoqkUSBSBtILqLfmytgfsymmFqsxcI', 'bienesraices_crud', '35345');
-    // $db = new mysqli('localhost', 'root', 'root', 'bienesraices_crud');
+    // $db = new mysqli('yamanote.proxy.rlwy.net', 'root', 'VVXoqkUSBSBtILqLfmytgfsymmFqsxcI', 'bienesraices_crud', '35345');
+    $db = new mysqli('localhost', 'root', 'root', 'bienesraices_crud');
     $db -> set_charset('utf8');
 
     try {

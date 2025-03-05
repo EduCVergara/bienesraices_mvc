@@ -16,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienes Raices</title>
     <link rel="stylesheet" href="../build/css/app.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header <?php echo $inicio ? 'inicio' : ''; ?>">
@@ -36,7 +37,10 @@
                         <a href="blog">Blog</a>
                         <a href="contacto">Contacto</a>
                         <?php if ($auth): ?>
-                        <a href="cerrar-sesion" class="cerrar-sesion">Cerrar Sesión</a>
+                        <a href="/admin" class="admin">Administrar</a>
+                        <?php endif; ?>
+                        <?php if ($auth): ?>
+                        <a href="logout" class="cerrar-sesion">Cerrar Sesión</a>
                         <?php endif; ?>
                         <img class="dark-mode-button" src="/build/img/dark-mode.svg" alt="modo-oscuro">
                     </nav>
