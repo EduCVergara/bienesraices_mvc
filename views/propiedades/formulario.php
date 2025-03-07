@@ -31,7 +31,7 @@
     <input type="number" id="wc" placeholder="Ejemplo: 1" min="1" max="9" name="propiedad[wc]" value="<?php echo s($propiedad->wc);?>">
 
     <label for="estacionamiento">Estacionamientos:</label>
-    <input type="text" id="estacionamiento" placeholder="Ejemplo: 2" min="1" max="9" name="propiedad[estacionamiento]" value="<?php echo s($propiedad->estacionamiento);?>">
+    <input type="text" id="estacionamiento" placeholder="Ejemplo: 2" min="0" max="9" name="propiedad[estacionamiento]" value="<?php echo s($propiedad->estacionamiento);?>">
 </fieldset>
 
 <fieldset>

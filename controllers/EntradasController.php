@@ -110,10 +110,6 @@ class EntradasController {
                         $entrada->eliminar();
                     }
                 }
-        
-            // // Redirige al panel de administración después de eliminar
-            // header('Location: /admin');
-            // exit;
             }
         }
     }

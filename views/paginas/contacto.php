@@ -46,7 +46,7 @@
                 </select>
 
                 <label for="presupuesto">Presupuesto</label>
-                <input type="number" id="presupuesto" placeholder="Tu presupuesto" name="contacto[presupuesto]" required>
+                <input type="text" id="presupuesto" placeholder="Tu presupuesto" name="contacto[presupuesto]" required>
             </fieldset>
 
             <fieldset>
@@ -56,7 +56,7 @@
 
                 <div class="forma-contacto">
                     <label for="contactar-telefono">Teléfono</label>
-                    <input type="radio" value="telefono" id="contactar-telefono" name="contacto[forma]" required>
+                    <input type="radio" value="telefono" id="contactar-telefono" maxlength="9" pattern="[0-9]{8,9}" name="contacto[forma]" required>
 
                     <label for="contactar-email">E-mail</label>
                     <input type="radio" value="email" id="contactar-email" name="contacto[forma]" required>

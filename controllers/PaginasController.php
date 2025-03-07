@@ -96,7 +96,7 @@ class PaginasController {
             $contenido = '<html>';
             $contenido .= '<p>Tienes un nuevo mensaje</p>';
             $contenido .= '<p>Nombre: <strong>' . $respuestas['nombre'] . '</strong> </p>';
-            $contenido .= '<p>Precio o Presupuesto: <strong>$' . $respuestas['presupuesto'] . '</strong> </p>';
+            $contenido .= '<p>Precio o Presupuesto: <strong>' . $respuestas['presupuesto'] . '</strong> </p>';
             $contenido .= '<p>Deseo: <strong>' . $respuestas['tipo'] . '</strong> una propiedad</p>';
             $contenido .= '<p>Mensaje: <strong>' . $respuestas['mensaje'] . '</strong> </p>';
 

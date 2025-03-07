@@ -11,8 +11,13 @@
         <img src="/imagenes/<?php echo $entrada->imagen ?>" class="imagen-small">
     <?php endif; ?>
 
+    <?php
+        // Convertir $entrada->fecha a formato YYYY-MM-DD si es necesario
+        $fechaFormateada = !empty($entrada->fecha) ? date('Y-m-d', strtotime($entrada->fecha)) : date('Y-m-d');
+    ?>
+
     <label for="fecha">Fecha:</label>
-    <input type="date" id="fecha" name="entrada[fecha]" placeholder="Título de la Entrada" value="<?php echo s($entrada->fecha);?>">
+    <input type="date" id="fecha" name="entrada[fecha]" placeholder="Título de la Entrada" value="<?php echo s($fechaFormateada); ?>">
 
     <label for="contenido">Contenido:</label>
     <textarea id="contenido" placeholder="Ejemplo: Tips de cómo decorar tu hogar" name="entrada[contenido]"><?php echo s($entrada->contenido);?></textarea>

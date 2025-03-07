@@ -1,41 +1,51 @@
+function formatearCampo(input, hiddenInput = null) {
+    let cursorPos = input.selectionStart; // Guardamos la posición del cursor
+    let valor = input.value.replace(/\D/g, ""); // Solo números
+
+    if (valor.length > 10) valor = valor.slice(0, 10); // Máximo 10 dígitos
+
+    if (valor === "") {
+        input.value = "$ ";
+        if (hiddenInput) hiddenInput.value = ""; // Limpia el campo oculto si es que existe
+        return;
+    }
+
+    let nuevoValor = "$ " + parseInt(valor, 10).toLocaleString("es-CL"); // Formato con puntos
+    let diferencia = nuevoValor.length - input.value.length; // Calculamos cambio en la longitud del string
+
+    input.value = nuevoValor;
+    if (hiddenInput) hiddenInput.value = valor; // Guarda sin puntos ni símbolos
+
+    input.setSelectionRange(cursorPos + diferencia, cursorPos + diferencia); // Restauramos la posición del cursor
+}
+
+function aplicarFormatoPresupuesto() {
+    const inputPresupuesto = document.getElementById("presupuesto");
+
+    if (inputPresupuesto) {
+        // Formato Inicial
+        formatearCampo(inputPresupuesto);
+
+        inputPresupuesto.addEventListener("input", function () {
+            formatearCampo(inputPresupuesto);
+        });
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() { // 'DOMContentLoaded' Escucha que todo el documento esté cargado
     eventListeners();
     darkMode();
+    aplicarFormatoPresupuesto();
 
     const inputPrecio = document.getElementById("prePrecio");
     const inputHidden = document.getElementById("precio");
 
-    function formatearPrecio() {
-        let valor = inputPrecio.value.replace(/\D/g, ""); // Quita caracteres no numéricos
-        if (valor) {
-            inputPrecio.value = "$ " + parseInt(valor, 10).toLocaleString("es-CL");
-            inputHidden.value = parseInt(valor, 10); // Solo números sin puntos ni comas
-        }
-    }
-
     inputPrecio.addEventListener("input", function () {
-        let cursorPos = this.selectionStart; // Guardamos la posición del cursor
-        let valor = this.value.replace(/\D/g, ""); // Solo números
-        if (valor.length > 10) valor = valor.slice(0, 10); // Máximo 10 dígitos
-
-        if (valor === "") {
-            this.value = "$ ";
-            inputHidden.value = "";
-            return;
-        }
-
-        let nuevoValor = "$ " + parseInt(valor, 10).toLocaleString("es-CL"); // Formato con puntos
-        let diferencia = nuevoValor.length - this.value.length; // Calculamos cambio en la longitud del string
-
-        this.value = nuevoValor;
-        inputHidden.value = valor; // Guarda sin puntos ni símbolos
-
-        this.setSelectionRange(cursorPos + diferencia, cursorPos + diferencia); // Restauramos la posición del cursor
+        formatearCampo(inputPrecio, inputHidden);
     });
 
-    // Aplica formato al cargar la página
-    formatearPrecio();
-
+    // Aplica formato inicial al cargar la página
+    formatearCampo(inputPrecio, inputHidden);
 
     const inputsNumericos = document.querySelectorAll("#habitaciones, #wc, #estacionamiento");
 
@@ -62,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() { // 'DOMContentLoaded'
             }
         });
     });
-}); 
+});
 
 function darkMode() {
 
@@ -176,13 +186,16 @@ function cerrarModal() {
     document.getElementById("modalConfirmacion").style.display = "none";
 }
 
-
 function mostrarMetodosContacto(e) {
     const contactoDiv = document.querySelector('#contacto');
     
     if (e.target.value === 'telefono') {
+
+        // Obtener la fecha actual en formato YYYY-MM-DD
+        // const fechaFormato = new Date().toISOString().split('T')[0];
+
         contactoDiv.innerHTML = `
-            <input type="tel" placeholder="Tu Teléfono" id="telefono" name="contacto[telefono]">
+            <input type="tel" placeholder="Tu Teléfono" id="telefono" maxlength="9" pattern="[0-9]{8,9}" name="contacto[telefono]">
 
             <p>Elija la fecha y la hora para ser contactado: </p>
 
@@ -197,4 +210,6 @@ function mostrarMetodosContacto(e) {
             <input type="email" placeholder="Tu E-Mail" id="email" name="contacto[email]" required>
         `;
     }
+    aplicarFormatoPresupuesto(inputPresupuesto);
 }
+
