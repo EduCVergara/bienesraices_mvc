@@ -58,12 +58,15 @@ class Admin extends ActiveRecord {
     }
 
     public function autenticar() {
-        session_start();
-
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+    
         // Llenar arreglo de sesión
         $_SESSION['usuario'] = $this->email;
         $_SESSION['login'] = true;
-
+    
         header('Location: /admin');
+        exit; // Importante para evitar que se siga ejecutando código después del header
     }
 }
