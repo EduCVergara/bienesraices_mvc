@@ -38,7 +38,6 @@ class PropiedadController {
 
             // Generar nombre único a imagen
             $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
-            debuguear($_FILES);
             if ($_FILES['propiedad']['tmp_name']['imagen']) {
                 $manager = new Image(Driver::class);// $manager es la variable para intervention image (subir imágenes con POO instalada con Composer)
                 $imagen = $manager->read($_FILES['propiedad']['tmp_name']['imagen'])->cover(800, 600);
