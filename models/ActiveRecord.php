@@ -35,6 +35,7 @@ class ActiveRecord {
         $query .= ") VALUES ('";
         $query .= join("', '", array_values($atributos));
         $query .= "')";
+        
         $resultado = self::$db->query($query);
 
         if ($resultado) {

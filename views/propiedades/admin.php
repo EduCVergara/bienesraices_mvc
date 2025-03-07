@@ -16,6 +16,10 @@
 
         <a href="/propiedades/crear" class="boton boton-verde">Nueva Propiedad</a>
         <a href="/vendedores/crear" class="boton boton-amarillo">Nuevo Vendedor(a)</a>
+        <a href="/entradas/crear" class="boton boton-amarillo">Nueva Entrada de Blog</a>
+
+            <!------------------- LISTADO DE PROPIEDADES ------------------->
+
         <h2>Propiedades</h2>
 
         <table class="propiedades">
@@ -51,6 +55,8 @@
             </tbody>
         </table>
 
+        <!------------------- LISTADO DE VENDEDORES ------------------->
+
         <h2>Vendedores</h2>
 
         <table class="propiedades">
@@ -76,6 +82,45 @@
                         <form method="POST" class="w-100 form-eliminacion" onsubmit="return abrirModal(event, <?php echo $vendedor->id; ?>, 'vendedor')">
                             <input type="hidden" name="id" value="<?php echo $vendedor->id ?>">
                             <input type="hidden" name="tipo" value="vendedor">
+                            <input type="submit" class="boton-rojo-block" value="Eliminar">
+                        </form>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+                <!------------------- LISTADO DE ENTRADAS DE BLOG ------------------->
+
+        <h2>Entradas</h2>
+
+        <table class="propiedades">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Imagen</th>
+                    <th>Fecha</th>
+                    <th>Contenido</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody> <!-- Mostrar los resultados -->
+                <?php foreach($entradas as $entrada): ?>
+                
+                <tr>
+                    <td><?php echo $entrada->id; ?></td>
+                    <td><?php echo $entrada->titulo; ?></td>
+                    <td><img src="/imagenes/<?php echo $entrada->imagen; ?>" class="imagen-tabla"></td>
+                    <td><?php echo $entrada->fecha; ?></td>
+                    <td><?php echo $entrada->contenido; ?></td>
+                    <td>
+                        <a href="/entradas/actualizar?id=<?php echo $entrada->id; ?>" class="boton-amarillo-block">Actualizar</a>
+                        
+                        <form method="POST" class="w-100 form-eliminacion" onsubmit="return abrirModal(event, <?php echo $entrada->id; ?>, 'entrada')">
+                            <input type="hidden" name="id" value="<?php echo $entrada->id ?>">
+                            <input type="hidden" name="tipo" value="entrada">
                             <input type="submit" class="boton-rojo-block" value="Eliminar">
                         </form>
                     </td>

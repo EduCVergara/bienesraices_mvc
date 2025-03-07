@@ -2,52 +2,32 @@
 
 namespace Controllers;
 use MVC\Router;
-use Model\Propiedad;
-use Model\Vendedores;
 use Model\Entradas;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager as Image;
 
-class PropiedadController {
-    public static function index(Router $router) {
-
-        $propiedades = Propiedad::all(); // método estático se llama con ::
-        $vendedores = Vendedores::all();
-        $entradas = Entradas::all();
-        
-        $resultado = $_GET['resultado'] ?? null;
-
-        $router->render('propiedades/admin', [
-            'propiedades' => $propiedades,
-            'vendedores' => $vendedores,
-            'entradas' => $entradas,
-            'resultado' => $resultado
-        ]);
-    }
+class EntradasController {
 
     public static function crear(Router $router) {
 
-        $propiedad = new Propiedad;
-        $vendedores = Vendedores::all();
+        $entrada = new Entradas;
 
         // Array con mensajes de errores
-        $errores = Propiedad::getErrores();
+        $errores = Entradas::getErrores();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $propiedad = new Propiedad($_POST['propiedad']);
+            $entrada = new Entradas($_POST['entrada']);
 
             // Generar nombre único a imagen
             $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
-            debuguear($_FILES);
-            if ($_FILES['propiedad']['tmp_name']['imagen']) {
-                $manager = new Image(Driver::class);// $manager es la variable para intervention image (subir imágenes con POO instalada con Composer)
-                $imagen = $manager->read($_FILES['propiedad']['tmp_name']['imagen'])->cover(800, 600);
-                $propiedad->setImagen($nombreImagen);
-            }
-            // Asignamos el precio correcto enviado por POST (sin formato para la BBDD)
-            $propiedad->precio = $_POST['precio'];
 
-            $errores = $propiedad->validar();
+            if ($_FILES['entrada']['tmp_name']['imagen']) {
+                $manager = new Image(Driver::class);// $manager es la variable para intervention image (subir imágenes con POO instalada con Composer)
+                $imagen = $manager->read($_FILES['entrada']['tmp_name']['imagen'])->cover(800, 600);
+                $entrada->setImagen($nombreImagen);
+            }
+            
+            $errores = $entrada->validar();
             if (empty($errores)) {
 
                 // * SUBIDA DE ARCHIVOS *//
@@ -60,13 +40,12 @@ class PropiedadController {
                     $imagen->save(CARPETA_IMAGENES . $nombreImagen);
                 }
 
-                $propiedad->guardar();
+                $entrada->guardar();
             }
         }
         // Renderizar lo que va hacia la vista (de lo contrario arrojará errores lo que no está definido)
-        $router->render('propiedades/crear', [
-           'propiedad' => $propiedad,
-           'vendedores' => $vendedores,
+        $router->render('entradas/crear', [
+           'entrada' => $entrada,
            'errores' => $errores
         ]);
     }
@@ -75,45 +54,42 @@ class PropiedadController {
         
         $id = ValidarORedireccionar('/admin');
 
-        $propiedad = Propiedad::find($id);
-        $vendedores = Vendedores::all();
+        $entrada = Entradas::find($id);
         // Array con mensajes de errores
-        $errores = Propiedad::getErrores();
+        $errores = Entradas::getErrores();
 
         // Ejecutar el código luego de que el usuario envía el formulario
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             // Asignar los atributos
-            $args = $_POST['propiedad'];
+            $args = $_POST['entrada'];
 
-            $propiedad->sync($args);
+            $entrada->sync($args);
 
             // Validación de campos
-            $errores = $propiedad->validar();
+            $errores = $entrada->validar();
 
             // Genera un nombre único a la imagen
             $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
 
             // Setear la imagen
             // Realiza un resize a la imagen con intervention
-            if ($_FILES['propiedad']['tmp_name']['imagen']) {
+            if ($_FILES['entrada']['tmp_name']['imagen']) {
                 $manager = new Image(Driver::class);// $manager es la variable para intervention image (subir imágenes con POO instalada con Composer)
-                $imagen = $manager->read($_FILES['propiedad']['tmp_name']['imagen'])->cover(800, 600);
-                $propiedad->setImagen($nombreImagen);
+                $imagen = $manager->read($_FILES['entrada']['tmp_name']['imagen'])->cover(800, 600);
+                $entrada->setImagen($nombreImagen);
             }
             // Revisar que el arreglo de errores esté vacío
             if (empty($errores)) {
                 // Almacenar la imagen
-                if ($_FILES['propiedad']['tmp_name']['imagen']){
+                if ($_FILES['entrada']['tmp_name']['imagen']){
                     $imagen->save(CARPETA_IMAGENES . $nombreImagen);
                 }
-                $propiedad->guardar();
+                $entrada->guardar();
             }
         }
 
-        $router->render('/propiedades/actualizar', [
-            'propiedad' => $propiedad,
-            'vendedores' => $vendedores,
+        $router->render('/entradas/actualizar', [
+            'entrada' => $entrada,
             'errores' => $errores
         ]);
     }
@@ -131,20 +107,14 @@ class PropiedadController {
     
                 if (validarTipoContenido($tipo)) {
                     // Compara lo que vamos a eliminar
-                    if ($tipo === 'vendedor' ) {
-                        $vendedor = Vendedores::find($id);
-                        $vendedor->eliminar();
-                    } else if ($tipo === 'propiedad') {
-                        $propiedad = Propiedad::find($id);
-                        $propiedad->eliminar();
-                    } else if ($tipo === 'entrada') {
+                    if ($tipo === 'entrada' ) {
                         $entrada = Entradas::find($id);
                         $entrada->eliminar();
                     }
                 }
             }
         }
-        $router->render('/propiedades/eliminar', [
+        $router->render('/entradas/eliminar', [
             
         ]);
     }
