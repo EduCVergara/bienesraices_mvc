@@ -144,17 +144,38 @@ function abrirModal(event, id, tipo) {
         return false;
     }
 
-    // Guardamos el tipo en el input del modal
-    document.getElementById("tipoModal").value = tipo;
-    // Guardamos el ID en el input del modal
-    document.getElementById("idEliminar").value = id;
+    // Seleccionamos los elementos del modal
+    const modal = document.getElementById("modalConfirmacion");
+    const formEliminar = document.getElementById("formEliminar");
+    const inputId = document.getElementById("idEliminar");
+    const inputTipo = document.getElementById("tipoModal");
+
+    // Definimos los nombres correctos de las rutas
+    const rutas = {
+        propiedad: "propiedades",
+        vendedor: "vendedores",
+        entrada: "entradas"
+    };
+
+    // Obtener el nombre correcto basado en el tipo
+    const ruta = rutas[tipo] || tipo; // Si no está en el objeto, usa el mismo tipo
+
+    // Asignamos los valores al modal
+    inputTipo.value = tipo;
+    inputId.value = id;
+
+    // Modificamos dinámicamente el 'action' del formulario según el tipo
+    formEliminar.action = `/${ruta}/eliminar`; // Ejemplo: "/propiedades/eliminar"
+
     // Mostramos el modal
-    document.getElementById("modalConfirmacion").style.display = "flex";
+    modal.style.display = "flex";
 }
 
+// Cerrar modal
 function cerrarModal() {
     document.getElementById("modalConfirmacion").style.display = "none";
 }
+
 
 function mostrarMetodosContacto(e) {
     const contactoDiv = document.querySelector('#contacto');

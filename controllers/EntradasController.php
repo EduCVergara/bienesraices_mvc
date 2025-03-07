@@ -88,21 +88,19 @@ class EntradasController {
             }
         }
 
-        $router->render('/entradas/actualizar', [
+        $router->render('entradas/actualizar', [
             'entrada' => $entrada,
             'errores' => $errores
         ]);
     }
 
-    public static function eliminar(Router $router) {
+    public static function eliminar() {
         // Eliminación de propiedades
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $id = $_POST['id'];
-            $id = filter_var($id, FILTER_VALIDATE_INT);
+            $id = filter_var($_POST['id'], FILTER_VALIDATE_INT);
     
             if ($id) {
-    
                 $tipo = $_POST['tipo'];
     
                 if (validarTipoContenido($tipo)) {
@@ -112,10 +110,11 @@ class EntradasController {
                         $entrada->eliminar();
                     }
                 }
+        
+            // Redirige al panel de administración después de eliminar
+            header('Location: /admin');
+            exit;
             }
         }
-        $router->render('/entradas/eliminar', [
-            
-        ]);
     }
 }

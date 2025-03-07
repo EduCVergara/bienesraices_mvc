@@ -111,41 +111,34 @@ class PropiedadController {
             }
         }
 
-        $router->render('/propiedades/actualizar', [
+        $router->render('propiedades/actualizar', [
             'propiedad' => $propiedad,
             'vendedores' => $vendedores,
             'errores' => $errores
         ]);
     }
 
-    public static function eliminar(Router $router) {
+    public static function eliminar() {
         // Eliminación de propiedades
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $id = $_POST['id'];
-            $id = filter_var($id, FILTER_VALIDATE_INT);
+            $id = filter_var($_POST['id'], FILTER_VALIDATE_INT);
     
             if ($id) {
-    
                 $tipo = $_POST['tipo'];
     
                 if (validarTipoContenido($tipo)) {
                     // Compara lo que vamos a eliminar
-                    if ($tipo === 'vendedor' ) {
-                        $vendedor = Vendedores::find($id);
-                        $vendedor->eliminar();
-                    } else if ($tipo === 'propiedad') {
+                    if ($tipo === 'propiedad' ) {
                         $propiedad = Propiedad::find($id);
                         $propiedad->eliminar();
-                    } else if ($tipo === 'entrada') {
-                        $entrada = Entradas::find($id);
-                        $entrada->eliminar();
                     }
                 }
+        
+            // Redirige al panel de administración después de eliminar
+            header('Location: /admin');
+            exit;
             }
         }
-        $router->render('/propiedades/eliminar', [
-            
-        ]);
     }
 }
