@@ -83,6 +83,7 @@ class ActiveRecord {
             $resultado = self::$db->query($query);
         } catch (\Throwable $th) {
             header('Location: /admin?resultado=4&nombre=' . urlencode($this->nombre));
+            exit;
         }
         
         if ($resultado) {
@@ -93,6 +94,7 @@ class ActiveRecord {
 
             // Redireccionar al Usuario
             header("Location: /admin?resultado=3&$parametro=" . urlencode($valor));
+            exit;
         }
     }
 
@@ -147,13 +149,13 @@ class ActiveRecord {
         }
     }
 
-    // Elimina el archivo de imagen
     public function borrarImagen() {
-        // Comprueba si existe el archivo
-        $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
-        if ($existeArchivo) {
-            // Elimina el archivo en la ubicación de la carpeta imagen si existe.
-            unlink(CARPETA_IMAGENES . $this->imagen);
+        if (property_exists($this, 'imagen') && !empty($this->imagen)) { 
+            $rutaImagen = CARPETA_IMAGENES . $this->imagen;
+    
+            if (file_exists($rutaImagen) && is_file($rutaImagen)) {
+                unlink($rutaImagen);
+            }
         }
     }
 

@@ -133,10 +133,6 @@ class PropiedadController {
                         $propiedad->eliminar();
                     }
                 }
-        
-            // Redirige al panel de administración después de eliminar
-            header('Location: /admin');
-            exit;
             }
         }
     }

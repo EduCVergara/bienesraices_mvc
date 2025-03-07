@@ -76,10 +76,6 @@ class VendedorController {
                         $vendedor->eliminar();
                     }
                 }
-        
-            // Redirige al panel de administración después de eliminar
-            header('Location: /admin');
-            exit;
             }
         }
     }

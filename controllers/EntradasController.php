@@ -111,9 +111,9 @@ class EntradasController {
                     }
                 }
         
-            // Redirige al panel de administración después de eliminar
-            header('Location: /admin');
-            exit;
+            // // Redirige al panel de administración después de eliminar
+            // header('Location: /admin');
+            // exit;
             }
         }
     }
