@@ -36,17 +36,23 @@ class PropiedadController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $propiedad = new Propiedad($_POST['propiedad']);
 
-            // Generar nombre único a imagen
+            // Validamos que la imagen no supere los 8mb
+            if ($_FILES['propiedad']['tmp_name']['imagen'] && $_FILES['propiedad']['size']['imagen'] > 8 * 1024 * 1024) {
+                $errores[] = 'La imagen no debe superar los 8MB.';
+            }
+
+            // Generamos nombre único a la imagen
             $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
             if ($_FILES['propiedad']['tmp_name']['imagen']) {
                 $manager = new Image(Driver::class);// $manager es la variable para intervention image (subir imágenes con POO instalada con Composer)
                 $imagen = $manager->read($_FILES['propiedad']['tmp_name']['imagen'])->cover(800, 600);
-                $propiedad->setImagen($nombreImagen);
+                $propiedad->setImagen($nombreImagen);    
             }
+
             // Asignamos el precio correcto enviado por POST (sin formato para la BBDD)
             $propiedad->precio = $_POST['precio'];
-
             $errores = $propiedad->validar();
+
             if (empty($errores)) {
 
                 // * SUBIDA DE ARCHIVOS *//
@@ -86,6 +92,12 @@ class PropiedadController {
             $args = $_POST['propiedad'];
 
             $propiedad->sync($args);
+
+            // Verificar tamaño de la imagen
+            if ($_FILES['propiedad']['tmp_name']['imagen'] && $_FILES['propiedad']['size']['imagen'] > 8 * 1024 * 1024) {
+                $errores[] = 'La imagen no debe superar los 8MB.';
+                debuguear($errores);
+            }
 
             // Validación de campos
             $errores = $propiedad->validar();

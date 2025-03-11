@@ -61,3 +61,33 @@ h3 {
 h4 {
     font-size: 2.6rem;
 }
+.swal2-title, .swal2-html-container {
+    font-size: 2.5rem; // Tamaño de fuente para título
+}
+
+.swal2-html-container {
+    font-size: 1.5rem; // Tamaño de fuente para el contenido
+}
+
+.swal2-success-circular-line-left,
+.swal2-success-circular-line-right,
+.swal2-success-fix {
+    background-color: transparent !important; // Fondo transparente
+}
+
+.swal2-success {
+    color: #00ff00; // Color del icono de éxito (verde)
+    border-color: #00ff00; // Color del borde del icono de éxito
+    background-color: transparent; // Fondo transparente
+}
+
+.swal2-confirm {
+    background-color: #00ff00; // Fondo verde para el botón de confirmación
+    color: #1e1e1e; // Texto oscuro para el botón
+    border: none; // Elimina el borde del botón
+    font-size: 1.5rem; // Tamaño de fuente para el botón
+
+    &:hover {
+        background-color: #00cc00; // Fondo verde más oscuro al pasar el mouse
+    }
+}

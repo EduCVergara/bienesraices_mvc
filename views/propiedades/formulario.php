@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <fieldset>
     <legend>Información General</legend>
 
@@ -13,7 +14,7 @@
     <label for="imagen">Imagen:</label>
     <input type="file" id="imagen" accept="image/jpeg, image/png" name="propiedad[imagen]">
 
-    <?php if($propiedad->imagen): ?>
+    <?php if(isset($propiedad->imagen)): ?>
         <img src="/imagenes/<?php echo $propiedad->imagen ?>" class="imagen-small">
     <?php endif; ?>
 
