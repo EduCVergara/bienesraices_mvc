@@ -12,7 +12,7 @@
     <input type="hidden" id="precio" name="precio">
 
     <label for="imagen">Imagen:</label>
-    <input type="file" id="imagen" accept="image/jpeg, image/png" name="propiedad[imagen]">
+    <input type="file" id="imagen" accept="image/*" name="propiedad[imagen]">
 
     <?php if(isset($propiedad->imagen)): ?>
         <img src="/imagenes/<?php echo $propiedad->imagen ?>" class="imagen-small">
